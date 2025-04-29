@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faFacebook, faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import styles from "./login.css";
+import "./login.css";
 
 const Login = () => {
   const [isActive, setIsActive] = useState(false);

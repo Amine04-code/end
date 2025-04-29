@@ -11,20 +11,18 @@ import Header from "../../../components/header";
 const Team = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
   const [rows, setRows] = useState([]);
 
-  // Fetch users from backend
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const res = await axios.get("http://localhost:5000/api/users");
-        const usersWithId = res.data.map((user, index) => ({
+        const usersWithId = res.data.map((user) => ({
           id: user._id,
-          name: `${user.firstName} ${user.lastName}`,
-          email: user.email,
-          phone: user.contact,
-          access: user.role,
+          name: user.fullname || user.name,
+          email: user.email || "N/A",
+          phone: user.phone || "N/A",
+          access: user.role || "employee",
         }));
         setRows(usersWithId);
       } catch (err) {
@@ -35,62 +33,45 @@ const Team = () => {
     fetchUsers();
   }, []);
 
-  // Handle change of access level (frontend-only for now)
-  const handleAccessChange = (id, newAccess) => {
+  const handleAccessChange = async (id, newAccess) => {
     const updatedRows = rows.map((row) =>
       row.id === id ? { ...row, access: newAccess } : row
     );
     setRows(updatedRows);
-    // Optional: send PUT request to backend to update user role
+
+    try {
+      await axios.put(`http://localhost:5000/api/user/${id}/role`, { role: newAccess });
+      console.log("Role updated successfully");
+    } catch (error) {
+      console.error("Error updating role:", error);
+    }
   };
 
   const columns = [
     { field: "id", headerName: "ID", flex: 1 },
-    {
-      field: "name",
-      headerName: "Name",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "phone",
-      headerName: "Phone Number",
-      flex: 1,
-    },
-    {
-      field: "email",
-      headerName: "Email",
-      flex: 1,
-    },
+    { field: "name", headerName: "Name", flex: 1, cellClassName: "name-column--cell" },
+    { field: "phone", headerName: "Phone Number", flex: 1 },
+    { field: "email", headerName: "Email", flex: 1 },
     {
       field: "access",
       headerName: "Access Level",
       flex: 1,
       renderCell: (params) => {
         const { id, access } = params.row;
-        const icon =
-          access === "HR Officer" ? (
-            <AdminPanelSettingsOutlinedIcon />
-          ) : access === "Accountant" ? (
-            <SecurityOutlinedIcon />
-          ) : (
-            <LockOpenOutlinedIcon />
-          );
+        const icon = access === "manager"
+          ? <AdminPanelSettingsOutlinedIcon />
+          : access === "accountant"
+          ? <SecurityOutlinedIcon />
+          : <LockOpenOutlinedIcon />;
 
         return (
-          <Box
-            width="100%"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            gap={1}
-          >
+          <Box width="100%" display="flex" alignItems="center" justifyContent="center" gap={1}>
             {icon}
             <Select
               value={access}
               onChange={(e) => handleAccessChange(id, e.target.value)}
               sx={{
-                backgroundColor: colors.greenAccent[700],
+                backgroundColor: "#6d74e8",
                 borderRadius: "4px",
                 color: colors.grey[100],
                 height: "30px",
@@ -98,10 +79,10 @@ const Team = () => {
                 minWidth: "140px",
               }}
             >
-              <MenuItem value="HR Officer">HR Officer</MenuItem>
-              <MenuItem value="Accountant">Accountant</MenuItem>
-              <MenuItem value="Employee">Employee</MenuItem>
-              <MenuItem value="Recruiter">Recruiter</MenuItem>
+              <MenuItem value="manager">Manager</MenuItem>
+              <MenuItem value="accountant">Accountant</MenuItem>
+              <MenuItem value="employee">Employee</MenuItem>
+              <MenuItem value="candidate">Candidate</MenuItem>
             </Select>
           </Box>
         );
@@ -110,8 +91,10 @@ const Team = () => {
   ];
   const Header = ({ title, subtitle }) => {
     return (
-      <Box mb={2}>
-        <Typography variant="h3">{title}</Typography>
+      <Box mb="30px">
+        <Typography variant="h2" fontWeight="bold" sx={{ mb: "5px" }}>
+          {title}
+        </Typography>
         <Typography variant="h5" sx={{ color: "#6d74e8" }}>
           {subtitle}
         </Typography>
@@ -125,29 +108,13 @@ const Team = () => {
         m="40px 0 0 0"
         height="75vh"
         sx={{
-          "& .MuiDataGrid-root": {
-            border: "none",
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: "none",
-          },
-          "& .name-column--cell": {
-            color: "#6d74e8",
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: "#6d74e8",
-            borderBottom: "none",
-          },
-          "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: "transparent",
-          },
-          "& .MuiDataGrid-footerContainer": {
-            borderTop: "none",
-            backgroundColor: "#6d74e8",
-          },
-          "& .MuiCheckbox-root": {
-            color: `${colors.greenAccent[200]} !important`,
-          },
+          "& .MuiDataGrid-root": { border: "none" },
+          "& .MuiDataGrid-cell": { borderBottom: "none" },
+          "& .name-column--cell": { color: "#6d74e8" },
+          "& .MuiDataGrid-columnHeaders": { backgroundColor: colors.blueAccent[700] },
+          "& .MuiDataGrid-virtualScroller": { backgroundColor: colors.primary[400] },
+          "& .MuiDataGrid-footerContainer": { backgroundColor: colors.blueAccent[700] },
+          "& .MuiCheckbox-root": { color: `${colors.greenAccent[200]} !important` },
         }}
       >
         <DataGrid checkboxSelection rows={rows} columns={columns} />

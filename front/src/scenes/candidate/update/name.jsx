@@ -3,9 +3,9 @@ import { Box, TextField, Button, Typography, IconButton, InputAdornment } from '
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'; // Import the back arrow icon
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 
-const changeName = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+const ChangeName = () => {
+  const [Name, setName] = useState('');
+  const [username, setusername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate(); // Initialize the navigate hook for navigation
@@ -19,8 +19,8 @@ const changeName = () => {
     }
 
     // Handle form submission logic here (e.g., save the names)
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
+    console.log('Name:', Name);
+    console.log('Username:', username);
     console.log('Password entered:', password);
   };
 
@@ -45,17 +45,17 @@ const changeName = () => {
       <form onSubmit={handleSubmit}>
         <Box display="flex" gap={2} mb={2}>
           <TextField
-            label="First Name"
+            label="Name"
             variant="outlined"
             fullWidth
-            value={firstName}
+            value={Name}
             onChange={(e) => setFirstName(e.target.value)}
           />
           <TextField
-            label="Last Name"
+            label="Username"
             variant="outlined"
             fullWidth
-            value={lastName}
+            value={username}
             onChange={(e) => setLastName(e.target.value)}
           />
         </Box>
@@ -87,4 +87,4 @@ const changeName = () => {
   );
 };
 
-export default changeName;
+export default ChangeName;

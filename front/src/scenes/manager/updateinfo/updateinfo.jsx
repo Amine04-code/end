@@ -100,57 +100,7 @@ const Updateinfom = () => {
           </Link>
         </Typography>
 
-        <Typography
-          variant="h6"
-          sx={{
-            mb: 2,
-            fontWeight: "500",
-            padding: "8px 16px",
-            borderRadius: "25px",
-            border: `1px solid ${colors.border}`,
-            backgroundColor: "transparent",
-            color: colors.text,
-            display: "flex",
-            alignItems: "center",
-            "&:hover": {
-              backgroundColor: colors.hover,
-            },
-          }}
-        >
-          <PhoneIcon sx={{ mr: 1 }} />
-          <Link
-            to="/update/phone"
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            Change Phone Number
-          </Link>
-        </Typography>
-
-        <Typography
-          variant="h6"
-          sx={{
-            mb: 2,
-            fontWeight: "500",
-            padding: "8px 16px",
-            borderRadius: "25px",
-            border: `1px solid ${colors.border}`,
-            backgroundColor: "transparent",
-            color: colors.text,
-            display: "flex",
-            alignItems: "center",
-            "&:hover": {
-              backgroundColor: colors.hover,
-            },
-          }}
-        >
-          <HomeIcon sx={{ mr: 1 }} />
-          <Link
-            to="/update/address"
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            Change Home Address
-          </Link>
-        </Typography>
+       
       </Box>
     </Box>
   );

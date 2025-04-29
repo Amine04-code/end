@@ -3,7 +3,7 @@ import { Box, TextField, Button, Typography, IconButton} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
 
-const Email = () => {
+const ChangeEmaile = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -67,4 +67,4 @@ const Email = () => {
   );
 };
 
-export default Email;
+export default ChangeEmaile;

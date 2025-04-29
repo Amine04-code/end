@@ -3,7 +3,7 @@ import { Box, TextField, Button, Typography, IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
 
-const Password = () => {
+const ChangePassworde = () => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -98,4 +98,4 @@ const Password = () => {
   );
 };
 
-export default Password;
+export default ChangePassworde;

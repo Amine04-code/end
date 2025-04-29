@@ -1,0 +1,90 @@
+/* Layout for login page */
+.login-page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #f5f6fa, #e0e5ec);
+    overflow: hidden;
+  }
+  
+  .login-page .card {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    padding: 32px 24px;
+    max-width: 360px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .login-page .card h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #6d74e8;
+  }
+  
+  .login-page .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  
+  .login-page .auth-form label {
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+  }
+  
+  .login-page .auth-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: white;
+    color: #333;
+  }
+  
+  .login-page .auth-form input:focus {
+    border-color: #6d74e8;
+    outline: none;
+  }
+  
+  .login-page .auth-form button {
+    padding: 12px;
+    background-color: #6d74e8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login-page .auth-form button:hover {
+    background-color: #5a63d1;
+  }
+  
+  .login-page .auth-form button:disabled {
+    background-color: #b0b3ec;
+    cursor: not-allowed;
+  }
+  
+  .login-page .signup-link {
+    margin-top: 12px;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .login-page .signup-link a {
+    color: #6d74e8;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+  .login-page .signup-link a:hover {
+    text-decoration: underline;
+  }
+  

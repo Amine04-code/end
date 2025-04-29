@@ -3,7 +3,7 @@ import { Box, TextField, Button, Typography, IconButton, InputAdornment } from '
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'; // Import the back arrow icon
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 
-const ChangeName = () => {
+const ChangeNamee = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
@@ -87,4 +87,4 @@ const ChangeName = () => {
   );
 };
 
-export default ChangeName;
+export default ChangeNamee;
